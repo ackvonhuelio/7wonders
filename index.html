@@ -117,18 +117,11 @@ textFont(createFont("monospace"));
 
 // memory leak fix
 //{
-Object.constructor.prototype.create = function () {
-        var obj = Object.create(this.prototype);
-        this.apply(obj, arguments);
-        return obj;
+var PJSCodeInjector,Reflect = sq.constructor("return Reflect")(); PJSCodeInjector.applyInstance = function (zed) {
+    return function () {
+        return Reflect.construct(zed, arguments);
     };
-// (function NewFix () {
-//   (function () { return this; })().Processing.instances[0].PJSCodeInjector.applyInstance = function (constructor) {
-//     return function () {
-//       return this.Reflect.construct(constructor, arguments);
-//     };
-//   };
-// })();
+};
 //}
 
 
@@ -19756,7 +19749,7 @@ background(255, 255, 255, 0);
         textCompatible("Tie",0,15);
         }else{
         fill(212, 0, 32);
-        textCompatible("You did't win...",0,0);
+        textCompatible("You didn't win...",0,0);
         }
         popMatrix();
         }
