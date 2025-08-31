@@ -117,10 +117,10 @@ textFont(createFont("monospace"));
 
 // memory leak fix
 //{
-var PJSCodeInjector,Reflect = sq.constructor("return Reflect")(); PJSCodeInjector.applyInstance = function (zed) {
-    return function () {
-        return Reflect.construct(zed, arguments);
-    };
+Object.constructor.prototype.create = function () {
+        var obj = Object.create(this.prototype);
+        this.apply(obj, arguments);
+        return obj;
 };
 //}
 
